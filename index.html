@@ -3,9 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pre entrega 1</title>
+    <title>Pre entrega 2</title>
 </head>
 <body>
-    <script src="./codigo.js"></script>
+    <header>
+        <div>
+            <img class="logo">
+            <h1 class="logo-nj">NJ</h1>
+        </div>
+        <div>
+            <button id="dark-mode"><img src="assets/icons/dark-mode.png"></button>
+            <button id="language"><img src="assets/icons/language.png"></button>
+        </div>
+    </header>
+    <main>
+        <div>
+            <h2>Entrada</h2>
+            <label for="divisaEntrada"></label>
+            <select id="divisaEntrada" name="divisaEntrada">
+                <option value="usd">USD</option>
+                <option value="usd">ARS</option>
+                <option value="usd">BRL</option>
+                <option value="usd">EUR</option>
+                <option value="usd">UYU</option>
+            </select>
+            <label for="montoEntrada"></label>
+            <input type="number" id="montoEntrada" name="montoEntrada">
+        </div>
+        <div>
+            <h2>Salida</h2>
+            <label for="divisaSalida"></label>
+            <select id="divisaSalida" name="divisaSalida">
+                <option value="usd">ARS</option>
+                <option value="usd">BRL</option>
+                <option value="usd">EUR</option>
+                <option value="usd">USD</option>
+                <option value="usd">UYU</option>
+            </select>
+            <div id="montoSalida">--</div>
+        </div>
+
+        <button>Intercambiar divisas</button>
+        <table>
+            <tr>
+                <th>Divisas</th>
+                <th>Compra</th>
+                <th>Venta</th>
+            </tr>
+            <tr>
+                <td>ARS-Peso Argentino</td>
+                <td>--</td>
+                <td>--</td>
+            </tr>
+            <tr>
+                <td>BRL-Real Brasileño</td>
+                <td>--</td>
+                <td>--</td>
+            </tr>
+            <tr>
+                <td>EUR-Euro</td>
+                <td>--</td>
+                <td>--</td>
+            </tr>
+            <tr>
+                <td>UYU-Peso Uruguayo</td>
+                <td>--</td>
+                <td>--</td>
+            </tr>
+        </table>
+    </main>
+    <footer>
+        <div>
+            <img class="logo">
+            <h3 class="logo-nj">NJ</h3>
+        </div>
+        <h3>2023</h3>
+        <h3>Nicolás Jiménez</h3>
+    </footer>
+    <script src="./js/codigo.js"></script>
 </body>
 </html>
