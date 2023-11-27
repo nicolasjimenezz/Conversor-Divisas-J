@@ -1,0 +1,35 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+header{
+    background: green;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+main{
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 2fr;
+    background-color: darkgreen;
+    .caja{
+        border:2px solid red;
+    }
+    .entrada{
+    }
+    .salida{
+        .montoSalida{
+            background-color: gray;
+        }
+    }
+}
+
+footer{
+    background: blue;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

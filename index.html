@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pre entrega 2</title>
+    <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
     <header>
@@ -17,7 +18,7 @@
         </div>
     </header>
     <main>
-        <div>
+        <div class="caja cajaEntrada">
             <h2>Entrada</h2>
             <label for="divisaEntrada"></label>
             <select id="divisaEntrada" name="divisaEntrada">
@@ -30,7 +31,7 @@
             <label for="montoEntrada"></label>
             <input type="number" id="montoEntrada" name="montoEntrada">
         </div>
-        <div>
+        <div class="caja cajaSalida">
             <h2>Salida</h2>
             <label for="divisaSalida"></label>
             <select id="divisaSalida" name="divisaSalida">
@@ -40,7 +41,7 @@
                 <option value="usd">USD</option>
                 <option value="usd">UYU</option>
             </select>
-            <div id="montoSalida">--</div>
+            <div id="montoSalida" class="montoSalida">--</div>
         </div>
 
         <button>Intercambiar divisas</button>
