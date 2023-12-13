@@ -4,30 +4,164 @@
 }
 
 header {
-  background: green;
+  background: #59e;
+  box-shadow: 2px 0 15px #55c;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+header .logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+header .logo img {
+  width: 64px;
+}
+header .botonesHeader {
+  display: flex;
+}
+header .botonIdioma img {
+  width: 52px;
+}
+header button {
+  border: 0;
+  background: none;
+  height: 64px;
+  width: 64px;
+}
+header button:hover {
+  cursor: pointer;
 }
 
 main {
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
-  grid-template-columns: 2fr;
-  background-color: darkgreen;
+  grid-template-areas: "entrada entrada" "salida salida" "botonGuardar botonLimpiarTabla" "tabla tabla";
+  justify-items: center;
+  /* Chrome, Safari, Edge, Opera */
+  /* Firefox */
+}
+main input::-webkit-outer-spin-button,
+main input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+main input[type=number] {
+  -moz-appearance: textfield;
 }
 main .caja {
-  border: 2px solid red;
+  border-radius: 6px;
+  box-shadow: 0 0 15px #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5dvh;
+  width: 65dvw;
 }
-main .salida .montoSalida {
-  background-color: gray;
+main .caja h2 {
+  text-align: center;
+}
+main .caja .cajaDivisa {
+  border: 2px solid;
+  margin: 0.75dvh;
+  height: 3dvh;
+  width: 80%;
+  border-radius: 4px;
+}
+main .caja .cajaDivisaMontoEntrada:focus {
+  box-shadow: 0px 0px 4px 4px rgb(212, 175, 55);
+}
+main .cajaEntrada {
+  grid-area: entrada;
+  margin: 5dvh 0 3dvh 0;
+}
+main .cajaSalida {
+  grid-area: salida;
+  margin: 3dvh 0 5dvh 0;
+}
+main .cajaSalida .montoSalida {
+  background-color: #ccc;
+}
+main .botonIntercambio {
+  grid-area: botonIntercambio;
+  border-radius: 12px;
+  padding: 0.5rem;
+}
+main .botonIntercambio img {
+  width: 6dvw;
+}
+main .botonInferior {
+  background-color: #8ae;
+  border-radius: 12px;
+  padding: 0.5rem;
+}
+main .botonInferior:hover {
+  cursor: pointer;
+  background: rgb(121, 161, 59);
+}
+main .botonGuardar {
+  grid-area: botonGuardar;
+}
+main .botonLimpiarTabla {
+  grid-area: botonLimpiarTabla;
+}
+main .tabla {
+  grid-area: tabla;
+  background: #eee;
+  border-collapse: collapse;
+  min-height: 16dvh;
+  width: 75dvw;
+  margin: 5dvh 0 10dvh 0;
+}
+main .tabla thead {
+  background-color: #ccc;
+  height: 7dvh;
+}
+main .tabla td {
+  border: 1px solid #aaa;
 }
 
 footer {
-  background: blue;
+  background: #59e;
+  box-shadow: -2px 0 15px #55c;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
+  padding: 2dvh 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.headerModoOscuro {
+  background: #444;
+  color: #fff;
+}
+.headerModoOscuro img {
+  filter: invert(100%);
+}
+
+.bodyModoOscuro {
+  background: #333;
+}
+
+.h2ModoOscuro {
+  color: #fff;
+}
+
+.footerModoOscuro {
+  background: #444;
+  color: #fff;
+}
+
+.tablaModoOscuro {
+  color: #fff;
+}
+.tablaModoOscuro #tablaHead {
+  background-color: #444;
+}
+.tablaModoOscuro td {
+  background-color: #444;
 }
 
 /*# sourceMappingURL=styles.css.map */

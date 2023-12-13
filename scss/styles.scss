@@ -1,35 +1,175 @@
+@import "./partials/colors.scss";
+
 *{
     padding: 0;
     margin: 0;
 }
 
 header{
-    background: green;
+    background: $fondoHeader;
+    box-shadow: 2px 0 15px $sombraHeader;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    .logo{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        img{
+            width: 64px;
+        }
+    }
+    .botonesHeader{
+        display: flex;
+    }
+    .botonIdioma{
+        img{
+            width: 52px;
+        }
+    }
+    button{
+        border: 0;
+        background: none;
+        height: 64px;
+        width: 64px;
+        &:hover{
+            cursor: pointer;
+        }
+    }
 }
 
 main{
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
-    grid-template-columns: 2fr;
-    background-color: darkgreen;
+    grid-template-areas: 
+    "entrada entrada"
+    "salida salida"
+    "botonGuardar botonLimpiarTabla"
+    "tabla tabla";
+    justify-items: center;
+    //Para quitar flechas/cursores por defecto del input
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    }
+    /* Firefox */
+    input[type=number] {
+    -moz-appearance: textfield;
+    }
     .caja{
-        border:2px solid red;
+        border-radius: 6px;
+        box-shadow: 0 0 15px #000;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1.5dvh;
+        width: 65dvw;
+        h2{
+            text-align: center;
+        }
+        $anchoCajaInput:80%;
+        .cajaDivisa{
+            border: 2px solid;
+            margin: 0.75dvh;
+            height: 3dvh;
+            width: $anchoCajaInput;
+            border-radius: 4px;
+        }
+        .cajaDivisaMontoEntrada{
+            &:focus{
+                box-shadow: 0px 0px 4px 4px $boxShadowDivisaEntrada;
+            }
+        }
     }
-    .entrada{
+    .cajaEntrada{
+        grid-area: entrada;
+        margin: 5dvh 0 3dvh 0;
     }
-    .salida{
+    .cajaSalida{
+        grid-area: salida;
+        margin: 3dvh 0 5dvh 0;
         .montoSalida{
-            background-color: gray;
+            background-color: $colorSalida;
+        }
+    }
+    .botonIntercambio{
+        grid-area: botonIntercambio;
+        border-radius: 12px;
+        padding: 0.5rem;
+        img{
+            width: 6dvw;
+        }
+    }
+    .botonInferior{
+        background-color: $botonFondo;
+        border-radius: 12px;
+        padding: 0.5rem;
+        &:hover{
+            cursor: pointer;
+            background: $botonBodyHover;
+        }
+    }
+    .botonGuardar{
+        grid-area: botonGuardar;
+    }
+    .botonLimpiarTabla{
+        grid-area: botonLimpiarTabla;
+    }
+    .tabla{
+        grid-area: tabla;
+        background: #eee;
+        border-collapse: collapse;
+        min-height: 16dvh;
+        width: 75dvw;
+        margin: 5dvh 0 10dvh 0;
+        thead{
+            background-color: #ccc;
+            height: 7dvh;
+        }
+        td{
+            border: 1px solid #aaa;
         }
     }
 }
 
 footer{
-    background: blue;
+    background: $fondoHeader;
+    box-shadow: -2px 0 15px $sombraHeader;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
+    padding: 2dvh 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+
+//DARK MODE
+.headerModoOscuro{
+    background: $fondoHeaderModoOscuro;
+    color: $letraModoOscuro;
+    img{
+        filter: invert(100%);
+    }
+}
+.bodyModoOscuro{
+    background: $fondoBodyModoOscuro;
+}
+.h2ModoOscuro{
+    color:$letraModoOscuro;
+}
+.footerModoOscuro{
+    background: $FondoFooterModoOscuro;
+    color: $letraModoOscuro;
+}
+.tablaModoOscuro{
+    color:$letraModoOscuro;
+    #tablaHead{
+        background-color: $fondoHeaderModoOscuro;
+    }
+    td{
+        background-color: $fondoHeaderModoOscuro;
+    }
 }
