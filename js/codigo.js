@@ -147,6 +147,14 @@ document.getElementById('montoEntrada').addEventListener('keydown', function (e)
 let guardar = document.querySelector('#botonGuardarIntercambio');
 guardar.addEventListener('click', () => {
     dibujarTabla();
+    Toastify({
+        text: '¡Añadiste una nueva fila!',
+        className: 'nuevaFilaTostada',
+        duration: 3000,
+        close: true,
+        gravity: 'top',
+        position: 'right',
+    }).showToast();
 });
 
 //boton limpiar tabla
@@ -165,12 +173,39 @@ limpiar.addEventListener('click', () => {
     </tbody>
     `;
     localStorage.clear();
+    Toastify({
+        text: '¡Limpiaste la tabla!',
+        className: 'limpiarTablaTostada',
+        duration: 3000,
+        close: true,
+        gravity: 'top',
+        position: 'right',
+    }).showToast();
 });
 
 let arrayTemporal;
 arrayTemporal = JSON.parse(localStorage.getItem("registro")) || [];
 console.log(arrayTemporal);
 arrayTemporal.forEach(dibujarRegistro); //hacer una validación para asegurarse de que existe en el local storage
+
+
+// fetch('http://api.exchangeratesapi.io/v1/latest')
+//     ? access_key = 'http://api.exchangeratesapi.io/v1/latest?access_key=c5e32fb8f7fdd2b53ef1fba25b530960'
+//     & base = EUR
+//     & symbols = USD,AUD,CAD,PLN,MXN
+
+console.log(fetch('http://api.exchangeratesapi.io/v1/latest?access_key=c5e32fb8f7fdd2b53ef1fba25b530960'));
+
+
+// https://api.exchangeratesapi.io/v1/latest
+//     ? access_key = http://api.exchangeratesapi.io/v1/latest?access_key=c5e32fb8f7fdd2b53ef1fba25b530960
+//     & base = USD
+//     & symbols = GBP,JPY,EUR
+
+
+
+
+
 
 
 //DARK MODE

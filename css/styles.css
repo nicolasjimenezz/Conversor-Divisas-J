@@ -121,6 +121,20 @@ main .tabla td {
   border: 1px solid #aaa;
 }
 
+.nuevaFilaTostada {
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  background: linear-gradient(#496, #253);
+}
+
+.limpiarTablaTostada {
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  background: linear-gradient(#46f, #23f);
+}
+
 footer {
   background: #59e;
   box-shadow: -2px 0 15px #55c;

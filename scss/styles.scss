@@ -133,6 +133,21 @@ main{
     }
 }
 
+//Toastify (dentro del main)
+.nuevaFilaTostada{
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    background: linear-gradient(#496, #253);
+}
+
+.limpiarTablaTostada{
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row; 
+    background: linear-gradient(#46f, #23f);
+}
+
 footer{
     background: $fondoHeader;
     box-shadow: -2px 0 15px $sombraHeader;
