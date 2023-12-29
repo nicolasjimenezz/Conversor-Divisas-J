@@ -1,20 +1,3 @@
-class Divisa {
-    constructor(nombre, iniciales, valorCambio, pais) { //Le di propiedades de nombre, iniciales, valor de cambio a dólares y país a las divisas.
-        this.nombre = nombre;
-        this.iniciales = iniciales;
-        this.valorCambio = valorCambio;
-        this.pais = pais;
-    }
-    convertir(montoEntrada, divisaEntrada, divisaSalida) { //Aqui se realiza e imprime la conversion. Primero se dolariza el valor ingresado, y luego se lo convierte a la moneda de salida
-        let salida;
-        salida = montoEntrada / (divisas[divisas.indexOf(divisaEntrada)].valorCambio); //salida=cantidad ingresada/valor de la moneda ingresada en dolares 
-        salida = salida * (divisas[divisas.indexOf(divisaSalida)].valorCambio); //cantidad ingresada (ahora en dolares) se multiplica por valor en dolares de la moneda de la salida
-        // console.log(`Monto final: ${salida} ${divisas[divisas.indexOf(divisaSalida)].nombre}`); //se imprime el resultado
-
-        cambiarMontoSalida(salida); //se modifica el div de salida
-    }
-}
-
 class Registro {
     constructor(entrada, codigoDivisaEntrada, salida, codigoDivisaSalida) {
         this.entrada = entrada;
@@ -24,6 +7,15 @@ class Registro {
     }
 }
 
+function convertir(montoEntrada, codigoDivisaEntrada, codigoDivisaSalida) { //Aqui se realiza e imprime la conversion. Primero se dolariza el valor ingresado, y luego se lo convierte a la moneda de salida
+    let salida;
+    console.log(divisas[codigoDivisaEntrada].valorCambio);
+    console.log(divisas[codigoDivisaSalida].valorCambio);
+    salida = montoEntrada / (divisas[codigoDivisaEntrada].valorCambio); //salida=cantidad ingresada/valor de la moneda ingresada en dolares 
+    salida = salida * (divisas[codigoDivisaSalida].valorCambio); //cantidad ingresada (ahora en dolares) se multiplica por valor en dolares de la moneda de la salida
+    cambiarMontoSalida(salida); //se modifica el div de salida
+}
+
 function cambiarMontoSalida(montoSalida) {
     salida = document.querySelector('#montoSalida');
     salida.textContent = Number.parseFloat(montoSalida).toFixed(2); //Trunca el número de salida
@@ -31,18 +23,21 @@ function cambiarMontoSalida(montoSalida) {
 
 function dibujarTabla() {
     let entrada = document.querySelector('#montoEntrada').value;
-    let codigoDivisaEntrada = document.querySelector('#divisaEntrada').value;
+    console.log(codigoDivisaEntrada);
+    console.log(codigoDivisaSalida);
+    codigoDivisaEntradaDibujo = document.querySelector('#divisaEntrada').selectedIndex;
+    codigoDivisaEntradaDibujo=conversorCodigo(codigoDivisaEntrada);
     let salida = document.querySelector('#montoSalida').textContent;
-    let codigoDivisaSalida = document.querySelector('#divisaSalida').value;
+    codigoDivisaSalidaDibujo = document.querySelector('#divisaSalida').value;
     let tabla = document.querySelector('#tabla');
     tabla.innerHTML += `
     <tr>
-        <td>${entrada} ${codigoDivisaEntrada}</td>
-        <td>${salida} ${codigoDivisaSalida}</td>
+        <td>${entrada} ${divisas[codigoDivisaEntrada].iniciales}</td>
+        <td>${salida} ${divisas[codigoDivisaSalida].iniciales}</td>
     </tr>
     `;
     // Guardar elementos en LocalStorage
-    const nuevoRegistro = new Registro(entrada, codigoDivisaEntrada, salida, codigoDivisaSalida);
+    const nuevoRegistro = new Registro(entrada, divisas[codigoDivisaEntrada].iniciales, salida, divisas[codigoDivisaSalida].iniciales);
     console.log(nuevoRegistro);
     let registro = JSON.parse(localStorage.getItem("registro")) || []; //Carga el localstorage actual en registro
     registro.push(nuevoRegistro); //Pushea el nuevo registro en el array registro
@@ -58,6 +53,16 @@ function dibujarRegistro(arrayTemporal) {
         <td>${arrayTemporal.salida} ${arrayTemporal.codigoDivisaSalida}</td>
     </tr>
     `;
+}
+
+function conversorCodigo(codigo){
+    switch (codigo) {
+        case 0: return 3; //usd
+        case 1: return 0; //ars
+        case 2: return 1; //brl
+        case 3: return 2; //eur
+        case 4: return 4; //uyu
+    }
 }
 
 //DARK MODE
@@ -82,59 +87,30 @@ function toggle() {
 
 
 
-const ars = new Divisa("Pesos Argentinos", "ARS", 390, "Argentina");
-const brl = new Divisa("Reales Brasileños", "BRL", 4.9, "Brasil");
-const eur = new Divisa("Euros", "EUR", 0.94, "Unión Europea");
-const usd = new Divisa("Dolares Estadounidenses", "USD", 1, "Estados Unidos");
-const uyu = new Divisa("Pesos Uruguayos", "UYU", 39.31, "Uruguay");
 
-const divisas = [ars, brl, eur, usd, uyu]; //Array de todos los objetos "Divisas"
+
+// INICIO DEL CODIGO PRINCIPAL
+
 const registro = []; //Historial de las conversiones
-
-//Primero tomamos los select de entrada y salida
-let divisaEntrada = document.querySelector('#divisaEntrada');
-let codigoDivisaEntrada = usd; //Al tener como select por defecto al USD, tengo que cambiar el orden con un switch
-divisaEntrada.addEventListener('blur', () => {
-    switch (divisaEntrada.selectedIndex) {
-        case 0: codigoDivisaEntrada = usd; //usd
-            break;
-        case 1: codigoDivisaEntrada = ars; //ars
-            break;
-        case 2: codigoDivisaEntrada = brl; //brl
-            break;
-        case 3: codigoDivisaEntrada = eur; //eur
-            break;
-        case 4: codigoDivisaEntrada = uyu; //uyu
-            break;
-    }
-})
-
-let divisaSalida = document.querySelector('#divisaSalida');
-let codigoDivisaSalida = ars;
-divisaSalida.addEventListener('blur', () => {
-    switch (divisaSalida.selectedIndex) {
-        case 0: codigoDivisaSalida = ars; //usd
-            break;
-        case 1: codigoDivisaSalida = brl; //ars
-            break;
-        case 2: codigoDivisaSalida = eur; //brl
-            break;
-        case 3: codigoDivisaSalida = usd; //eur
-            break;
-        case 4: codigoDivisaSalida = uyu; //uyu
-            break;
-    }
-});
+let codigoDivisaEntrada = 3; //Toma al 3 (USD) por defecto
+let codigoDivisaSalida = 0; //Toma al 0 (ARS) por defecto
+let codigoDivisaEntradaDibujo, codigoDivisaSalidaDibujo;
 
 //Eventos que activan la toma del valor del input, para transformarlo
 let montoEntrada = document.querySelector('#montoEntrada');
-montoEntrada.addEventListener('blur', () => { usd.convertir(montoEntrada.value, codigoDivisaEntrada, codigoDivisaSalida) }); //usar blur o keydown
+montoEntrada.addEventListener('blur', () => { convertir(montoEntrada.value, codigoDivisaEntrada, codigoDivisaSalida) });
 
-divisaEntrada = document.querySelector('#divisaEntrada');
-divisaEntrada.addEventListener('blur', () => { usd.convertir(montoEntrada.value, codigoDivisaEntrada, codigoDivisaSalida) }); //usar blur o keydown
+let divisaEntrada = document.querySelector('#divisaEntrada');
+divisaEntrada.addEventListener('blur', () => {
+    codigoDivisaEntrada=conversorCodigo(codigoDivisaEntrada);
+    convertir(montoEntrada.value, codigoDivisaEntrada, codigoDivisaSalida);
+});
 
-divisaSalida = document.querySelector('#divisaSalida');
-divisaSalida.addEventListener('blur', () => { usd.convertir(montoEntrada.value, codigoDivisaEntrada, codigoDivisaSalida) }); //usar blur o keydown
+let divisaSalida = document.querySelector('#divisaSalida');
+divisaSalida.addEventListener('blur', () => {
+    codigoDivisaSalida=divisaSalida.selectedIndex;
+    convertir(montoEntrada.value, codigoDivisaEntrada, codigoDivisaSalida);
+});
 
 //Para evitar que las arrowup y arrowdown alteren el valor del input
 document.getElementById('montoEntrada').addEventListener('keydown', function (e) {
@@ -185,27 +161,17 @@ limpiar.addEventListener('click', () => {
 
 let arrayTemporal;
 arrayTemporal = JSON.parse(localStorage.getItem("registro")) || [];
-console.log(arrayTemporal);
-arrayTemporal.forEach(dibujarRegistro); //hacer una validación para asegurarse de que existe en el local storage
+arrayTemporal.forEach(dibujarRegistro);
 
 
-// fetch('http://api.exchangeratesapi.io/v1/latest')
-//     ? access_key = 'http://api.exchangeratesapi.io/v1/latest?access_key=c5e32fb8f7fdd2b53ef1fba25b530960'
-//     & base = EUR
-//     & symbols = USD,AUD,CAD,PLN,MXN
-
-console.log(fetch('http://api.exchangeratesapi.io/v1/latest?access_key=c5e32fb8f7fdd2b53ef1fba25b530960'));
-
-
-// https://api.exchangeratesapi.io/v1/latest
-//     ? access_key = http://api.exchangeratesapi.io/v1/latest?access_key=c5e32fb8f7fdd2b53ef1fba25b530960
-//     & base = USD
-//     & symbols = GBP,JPY,EUR
-
-
-
-
-
+const divisas = [];
+fetch('./divisas.json')
+    .then(response => response.json())
+    .then(datosJSON => {
+        datosJSON.forEach(element => {
+            divisas.push(element); //PUSH DE LOS JSON EN DIVISAS
+        });
+    })
 
 
 //DARK MODE

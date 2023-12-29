@@ -1,0 +1,32 @@
+[
+    {
+        "nombre": "Pesos Argentinos",
+        "iniciales": "ARS",
+        "valorCambio": 800,
+        "pais": "Argentina"
+    },
+    {
+        "nombre": "Reales Brasileños",
+        "iniciales": "BRL",
+        "valorCambio": 4.9,
+        "pais": "Brasil"
+    },
+    {
+        "nombre": "Euros",
+        "iniciales": "EUR",
+        "valorCambio": 0.94,
+        "pais": "Unión Europea"
+    },
+    {
+        "nombre": "Dolares Estadounidenses",
+        "iniciales": "USD",
+        "valorCambio": 1,
+        "pais": "Estados Unidos"
+    },
+    {
+        "nombre": "Pesos Uruguayos",
+        "iniciales": "UYU",
+        "valorCambio": 39.31,
+        "pais": "Uruguay"
+    }
+]
