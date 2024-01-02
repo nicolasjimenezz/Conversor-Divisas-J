@@ -9,8 +9,6 @@ class Registro {
 
 function convertir(montoEntrada, codigoDivisaEntrada, codigoDivisaSalida) { //Aqui se realiza e imprime la conversion. Primero se dolariza el valor ingresado, y luego se lo convierte a la moneda de salida
     let salida;
-    console.log(divisas[codigoDivisaEntrada].valorCambio);
-    console.log(divisas[codigoDivisaSalida].valorCambio);
     salida = montoEntrada / (divisas[codigoDivisaEntrada].valorCambio); //salida=cantidad ingresada/valor de la moneda ingresada en dolares 
     salida = salida * (divisas[codigoDivisaSalida].valorCambio); //cantidad ingresada (ahora en dolares) se multiplica por valor en dolares de la moneda de la salida
     cambiarMontoSalida(salida); //se modifica el div de salida
@@ -23,10 +21,8 @@ function cambiarMontoSalida(montoSalida) {
 
 function dibujarTabla() {
     let entrada = document.querySelector('#montoEntrada').value;
-    console.log(codigoDivisaEntrada);
-    console.log(codigoDivisaSalida);
     codigoDivisaEntradaDibujo = document.querySelector('#divisaEntrada').selectedIndex;
-    codigoDivisaEntradaDibujo=conversorCodigo(codigoDivisaEntrada);
+    codigoDivisaEntradaDibujo = conversorCodigo(codigoDivisaEntrada);
     let salida = document.querySelector('#montoSalida').textContent;
     codigoDivisaSalidaDibujo = document.querySelector('#divisaSalida').value;
     let tabla = document.querySelector('#tabla');
@@ -38,7 +34,6 @@ function dibujarTabla() {
     `;
     // Guardar elementos en LocalStorage
     const nuevoRegistro = new Registro(entrada, divisas[codigoDivisaEntrada].iniciales, salida, divisas[codigoDivisaSalida].iniciales);
-    console.log(nuevoRegistro);
     let registro = JSON.parse(localStorage.getItem("registro")) || []; //Carga el localstorage actual en registro
     registro.push(nuevoRegistro); //Pushea el nuevo registro en el array registro
     localStorage.clear(); //Limpiar el localstorage
@@ -55,7 +50,7 @@ function dibujarRegistro(arrayTemporal) {
     `;
 }
 
-function conversorCodigo(codigo){
+function conversorCodigo(codigo) {
     switch (codigo) {
         case 0: return 3; //usd
         case 1: return 0; //ars
@@ -86,15 +81,13 @@ function toggle() {
 }
 
 
-
-
-
 // INICIO DEL CODIGO PRINCIPAL
 
 const registro = []; //Historial de las conversiones
 let codigoDivisaEntrada = 3; //Toma al 3 (USD) por defecto
 let codigoDivisaSalida = 0; //Toma al 0 (ARS) por defecto
-let codigoDivisaEntradaDibujo, codigoDivisaSalidaDibujo;
+let codigoDivisaEntradaDibujo;
+let codigoDivisaSalidaDibujo;
 
 //Eventos que activan la toma del valor del input, para transformarlo
 let montoEntrada = document.querySelector('#montoEntrada');
@@ -102,13 +95,13 @@ montoEntrada.addEventListener('blur', () => { convertir(montoEntrada.value, codi
 
 let divisaEntrada = document.querySelector('#divisaEntrada');
 divisaEntrada.addEventListener('blur', () => {
-    codigoDivisaEntrada=conversorCodigo(codigoDivisaEntrada);
+    codigoDivisaEntrada = conversorCodigo(divisaEntrada.selectedIndex);
     convertir(montoEntrada.value, codigoDivisaEntrada, codigoDivisaSalida);
 });
 
 let divisaSalida = document.querySelector('#divisaSalida');
 divisaSalida.addEventListener('blur', () => {
-    codigoDivisaSalida=divisaSalida.selectedIndex;
+    codigoDivisaSalida = divisaSalida.selectedIndex;
     convertir(montoEntrada.value, codigoDivisaEntrada, codigoDivisaSalida);
 });
 

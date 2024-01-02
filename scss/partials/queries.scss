@@ -1,0 +1,28 @@
+/*MEDIA QUERIES - DESKTOP*/
+@media screen and (min-width:768px){
+    main{
+    display: grid;
+    grid-template-areas: 
+    "entrada salida"
+    "botonGuardar botonLimpiarTabla"
+    "tabla tabla";
+    .caja{
+        width: 35dvw;
+        margin: 5dvh 0;
+        .cajaDivisa{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 7dvh;
+            text-align: center;
+            }
+        }
+    }
+    .tabla{
+        text-align: center;
+        .td{
+            height: 5dvh;
+        }
+    }
+
+}

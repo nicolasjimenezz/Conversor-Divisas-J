@@ -178,4 +178,29 @@ footer {
   background-color: #444;
 }
 
+/*MEDIA QUERIES - DESKTOP*/
+@media screen and (min-width: 768px) {
+  main {
+    display: grid;
+    grid-template-areas: "entrada salida" "botonGuardar botonLimpiarTabla" "tabla tabla";
+  }
+  main .caja {
+    width: 35dvw;
+    margin: 5dvh 0;
+  }
+  main .caja .cajaDivisa {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 7dvh;
+    text-align: center;
+  }
+  .tabla {
+    text-align: center;
+  }
+  .tabla .td {
+    height: 5dvh;
+  }
+}
+
 /*# sourceMappingURL=styles.css.map */
