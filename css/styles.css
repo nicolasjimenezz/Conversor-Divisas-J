@@ -16,7 +16,9 @@ header .logo {
   align-items: center;
 }
 header .logo img {
-  width: 64px;
+  object-fit: fill;
+  padding-left: 0.7dvw;
+  width: 54px;
 }
 header .botonesHeader {
   display: flex;
@@ -195,11 +197,11 @@ footer {
     height: 7dvh;
     text-align: center;
   }
-  .tabla {
+  main .tabla {
     text-align: center;
   }
-  .tabla .td {
-    height: 5dvh;
+  main .tabla td {
+    height: 4dvh;
   }
 }
 

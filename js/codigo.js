@@ -86,8 +86,7 @@ function toggle() {
 const registro = []; //Historial de las conversiones
 let codigoDivisaEntrada = 3; //Toma al 3 (USD) por defecto
 let codigoDivisaSalida = 0; //Toma al 0 (ARS) por defecto
-let codigoDivisaEntradaDibujo;
-let codigoDivisaSalidaDibujo;
+let codigoDivisaEntradaDibujo, codigoDivisaSalidaDibujo;
 
 //Eventos que activan la toma del valor del input, para transformarlo
 let montoEntrada = document.querySelector('#montoEntrada');
