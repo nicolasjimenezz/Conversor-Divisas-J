@@ -90,16 +90,16 @@ let codigoDivisaEntradaDibujo, codigoDivisaSalidaDibujo;
 
 //Eventos que activan la toma del valor del input, para transformarlo
 let montoEntrada = document.querySelector('#montoEntrada');
-montoEntrada.addEventListener('blur', () => { convertir(montoEntrada.value, codigoDivisaEntrada, codigoDivisaSalida) });
+montoEntrada.addEventListener('input', () => { convertir(montoEntrada.value, codigoDivisaEntrada, codigoDivisaSalida) });
 
 let divisaEntrada = document.querySelector('#divisaEntrada');
-divisaEntrada.addEventListener('blur', () => {
+divisaEntrada.addEventListener('input', () => {
     codigoDivisaEntrada = conversorCodigo(divisaEntrada.selectedIndex);
     convertir(montoEntrada.value, codigoDivisaEntrada, codigoDivisaSalida);
 });
 
 let divisaSalida = document.querySelector('#divisaSalida');
-divisaSalida.addEventListener('blur', () => {
+divisaSalida.addEventListener('input', () => {
     codigoDivisaSalida = divisaSalida.selectedIndex;
     convertir(montoEntrada.value, codigoDivisaEntrada, codigoDivisaSalida);
 });
@@ -114,15 +114,17 @@ document.getElementById('montoEntrada').addEventListener('keydown', function (e)
 //boton guardar intercambio en la tabla
 let guardar = document.querySelector('#botonGuardarIntercambio');
 guardar.addEventListener('click', () => {
-    dibujarTabla();
-    Toastify({
-        text: '¡Añadiste una nueva fila!',
-        className: 'nuevaFilaTostada',
-        duration: 3000,
-        close: true,
-        gravity: 'top',
-        position: 'right',
-    }).showToast();
+    if (montoEntrada.value!="" && montoEntrada.value!=0){
+        dibujarTabla();
+        Toastify({
+            text: '¡Añadiste una nueva fila!',
+            className: 'nuevaFilaTostada',
+            duration: 3000,
+            close: true,
+            gravity: 'top',
+            position: 'right',
+        }).showToast();
+    }
 });
 
 //boton limpiar tabla
